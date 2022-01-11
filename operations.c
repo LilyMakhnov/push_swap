@@ -24,9 +24,7 @@ void	ft_r(t_list **stack_a, char a)
 		first = *stack_a;
 		tmp->next = NULL;
 		while ((*stack_a)->next)
-		{
 			*stack_a = (*stack_a)->next;
-		}
 		(*stack_a)->next = tmp;
 		*stack_a = first;
 		write(1, "r", 1);
@@ -44,9 +42,7 @@ void	ft_rr(t_list **stack_a, char a)
 	{
 		first = *stack_a;
 		while ((*stack_a)->next->next)
-		{
 			*stack_a = (*stack_a)->next;
-		}
 		tmp = (*stack_a)->next;
 		(*stack_a)->next = NULL;
 		(*stack_a) = first;

@@ -6,7 +6,7 @@
 /*   By: esivre <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 17:16:20 by esivre            #+#    #+#             */
-/*   Updated: 2021/12/07 17:16:24 by esivre           ###   ########.fr       */
+/*   Updated: 2022/01/11 15:52:13 by esivre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ int	ft_atoi(const char *nbr)
 	while (*nbr >= '0' && *nbr <= '9')
 	{
 		if (res > 2147483648 || (res == 2147483648 && sign == 1))
-			quit(0, 0, 0);
+			quit(1, 0, 0);
 		res = res * 10 + *nbr++ - '0';
 	}
 	if (res > 2147483648 || (res == 2147483648 && sign == 1))
-		quit(0, 0, 0);
+		quit(1, 0, 0);
 	return (sign * res);
 }
 
@@ -93,12 +93,12 @@ void	ft_fill_stack(t_list **stack_a, int argc, char **argv)
 	{
 		tmp = ft_lst_create(ft_atoi(argv[i]));
 		if (!tmp)
-			quit(0, stack_a, 0);
+			quit(1, stack_a, 0);
 		ft_lst_pushback(stack_a, tmp);
 	}
 	tab = malloc(sizeof(int) * (argc - 1));
 	if (!tab)
-		quit(0, stack_a, 0);
+		quit(1, stack_a, 0);
 	i = -1;
 	while (++i + 1 < argc)
 		tab[i] = ft_atoi(argv[i + 1]);
@@ -113,11 +113,11 @@ void	quit(int a, t_list **stack_a, t_list **stack_b)
 		ft_free_linkedlist(stack_a);
 	if (stack_b)
 		ft_free_linkedlist(stack_b);
-	if (a == 0)
+	if (a == 1)
 	{
-		write (2, "ERROR\n", 6);
+		write (2, "Error\n", 6);
 		exit(EXIT_FAILURE);
 	}
-	if (a == 1)
+	if (a == 0)
 		exit(EXIT_SUCCESS);
 }
